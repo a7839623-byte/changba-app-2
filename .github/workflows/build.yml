@@ -18,19 +18,20 @@ jobs:
         with:
           python-version: '3.10'
 
+      # 完全保留你之前成功的環境，只安裝最新 pip 與 flet
       - name: Install Flet
         run: |
           python -m pip install --upgrade pip
           pip install flet
 
-      # 這裡完全保留你們測試成功、能順利通過互動提示的 yes | 管道語法
+      # ⚠️ 丟掉 yes |，改用官方內建的 --yes 參數，這樣帶有權限的 toml 就不會報錯
       - name: Build APK (Auto-yes for prompts)
         run: |
-          yes | flet build apk
+          flet build apk --yes
 
-      # 調整這裡的名稱，強制對齊你原本唱吧專案的本體名字
+      # 上傳並強制命名為 changba-app
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: changba-app  # 👈 這裡改成你的本體專案名字
+          name: changba-app
           path: build/**/*.apk
