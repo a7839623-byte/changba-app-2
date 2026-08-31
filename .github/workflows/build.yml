@@ -10,26 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
 
-      - name: Install Flet
-        run: |
-          python -m pip install --upgrade pip
-          pip install flet
-
-      # ⚠️ 徹底放棄有 Bug 的 build apk，改用最穩定、絕不卡住的 pack 指令！
-      - name: Build APK (Safe Package Mode)
-        run: |
-          flet pack main.py
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: changba-app
-          path: build/**/*.apk
+    - name: Install Flet
+      run: |
+        python -m pip install --upgrade pip
+        pip install flet
+    - name: Build APK (Auto-yes for prompts)
+      run: |
+        yes | flet build apk.
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release
+        path: build/**/*.apk
