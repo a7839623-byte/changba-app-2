@@ -1,18 +1,14 @@
-[project]
-name = "changba-app"
-version = "1.0.0"
-dependencies = [
-    "flet>=0.25.0"
-]
-
 [tool.flet]
-# 手機上顯示的 App 名稱
+# 手機上安裝時顯示的 App 名稱
 app_name = "唱吧音訊一鍵替換助手"
 
-# ⚠️ 非常重要：請把下方引號內改為你原本唱吧程式的實際包名（Package Name）
-package_name = "your.changba.packagename" 
+# ⚠️ 非常重要：必須改成你原本主程式、以及原唱吧程式完全相同的 Package Name
+package_name = "your.changba.packagename"
 
-# ⚠️ 最新官方標準的 Android 13 權限注入區塊
+# 版本號，建議設定與之前不同或較高的版本
+version = "1.0.0"
+
+# ⚠️ Flet 標準的 Android 13 權限區塊（用來點亮按鈕）
 [tool.flet.android.permission]
 "android.permission.MANAGE_EXTERNAL_STORAGE" = true
 "android.permission.READ_MEDIA_AUDIO" = true
