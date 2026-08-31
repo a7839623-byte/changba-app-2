@@ -1,19 +1,20 @@
+[project]
+name = "changba-app"
+version = "1.0.0"
+dependencies = [
+    "flet>=0.25.0"
+]
+
 [tool.flet]
-# 應用程式名稱
+# 手機上顯示的 App 名稱
 app_name = "唱吧音訊一鍵替換助手"
 
-# 包名（Package Name），必須與原本功能版、以及原唱吧程式完全相同
+# ⚠️ 非常重要：請把下方引號內改為你原本唱吧程式的實際包名（Package Name）
 package_name = "your.changba.packagename" 
 
-# 版本號，建議設定與之前不同或較高的版本
-version = "1.0.0"
-
-# ⚠️ 這裡才是 Flet 官方標準的 Android 權限宣告語法區塊
+# ⚠️ 最新官方標準的 Android 13 權限注入區塊
 [tool.flet.android.permission]
-# Android 13 最核心的「所有檔案存取權限」（強烈建議加，用來跳轉開啟）
 "android.permission.MANAGE_EXTERNAL_STORAGE" = true
-
-# Android 13 針對媒體檔案細分的讀取權限（空殼打包進去用來點亮按鈕）
 "android.permission.READ_MEDIA_AUDIO" = true
 "android.permission.READ_MEDIA_VIDEO" = true
 "android.permission.READ_MEDIA_IMAGES" = true
